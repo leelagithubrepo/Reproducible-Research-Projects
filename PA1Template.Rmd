@@ -4,8 +4,6 @@ author: "Leela"
 date: "December, 2017"
 ---
 
-github repo for rest of specialization: [Data Science Coursera](https://github.com/mGalarnyk/datasciencecoursera)
-
 Introduction
 ------------
 
