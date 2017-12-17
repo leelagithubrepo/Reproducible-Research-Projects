@@ -61,9 +61,8 @@ max_interval <- steps_by_interval[which.max(steps_by_interval$steps),1]
 
 The 5-minute interval, on average across all the days in the data set, containing the maximum number of steps is `r max_interval`.
 
-## Impute missing values. Compare imputed to non-imputed data.
-Missing data needed to be imputed. Only a simple imputation approach was required for this assignment. 
-Missing values were imputed by inserting the average for each interval. Thus, if interval 10 was missing on 10-02-2012, the average for that interval for all days (0.1320755), replaced the NA. 
+## Impute missing values. 
+Missing values were imputed by inserting the average for each interval. 
 ```{r}
 incomplete <- sum(!complete.cases(data))
 imputed_data <- transform(data, steps = ifelse(is.na(data$steps), steps_by_interval$steps[match(data$interval, steps_by_interval$interval)], data$steps))
@@ -108,7 +107,8 @@ total_diff <- sum(steps_by_day_i$steps) - sum(steps_by_day$steps)
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
-Created a plot to compare and contrast number of steps between the week and weekend. There is a higher peak earlier on weekdays, and more overall activity on weekends.  
+Created Panel Plot to compare the activity pattern between weekdays and weekend. 
+Analysis: There is higer peak seen on the initial days during weekdays, but overall higher peak is on weekends
 ``` {r}
 weekdays <- c("Monday", "Tuesday", "Wednesday", "Thursday", 
               "Friday")

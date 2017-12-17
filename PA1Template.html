@@ -172,9 +172,9 @@ plot(steps_by_interval$interval,steps_by_interval$steps, type=&quot;l&quot;, xla
 <pre class="r"><code>max_interval &lt;- steps_by_interval[which.max(steps_by_interval$steps),1]</code></pre>
 <p>The 5-minute interval, on average across all the days in the data set, containing the maximum number of steps is 835.</p>
 </div>
-<div id="impute-missing-values.-compare-imputed-to-non-imputed-data." class="section level2">
-<h2>Impute missing values. Compare imputed to non-imputed data.</h2>
-<p>Missing data needed to be imputed. Only a simple imputation approach was required for this assignment. Missing values were imputed by inserting the average for each interval. Thus, if interval 10 was missing on 10-02-2012, the average for that interval for all days (0.1320755), replaced the NA.</p>
+<div id="impute-missing-values." class="section level2">
+<h2>Impute missing values.</h2>
+<p>Missing values were imputed by inserting the average for each interval.</p>
 <pre class="r"><code>incomplete &lt;- sum(!complete.cases(data))
 imputed_data &lt;- transform(data, steps = ifelse(is.na(data$steps), steps_by_interval$steps[match(data$interval, steps_by_interval$interval)], data$steps))</code></pre>
 <p>Zeroes were imputed for 10-01-2012 because it was the first day and would have been over 9,000 steps higher than the following day, which had only 126 steps. NAs then were assumed to be zeros to fit the rising trend of the data.</p>
@@ -205,7 +205,7 @@ med_diff &lt;- rmedian.i - rmedian</code></pre>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
-<p>Created a plot to compare and contrast number of steps between the week and weekend. There is a higher peak earlier on weekdays, and more overall activity on weekends.</p>
+<p>Created Panel Plot to compare the activity pattern between weekdays and weekend. Analysis: There is higer peak seen on the initial days during weekdays, but overall higher peak is on weekends</p>
 <pre class="r"><code>weekdays &lt;- c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, 
               &quot;Friday&quot;)
 imputed_data$dow = as.factor(ifelse(is.element(weekdays(as.Date(imputed_data$date)),weekdays), &quot;Weekday&quot;, &quot;Weekend&quot;))
